@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.Random;
 
@@ -30,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText passwordText;
     private EditText addItemName;
     private EditText addItemQty;
-    private BottomNavigationView bottomNav;
     private final String CHANNEL_ID = "inventory_notifications";
 
     @Override
@@ -39,9 +39,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         myDb = new DatabaseHelper(this);
         createNotificationChannel();
+
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+    private NavigationBarView.OnItemSelectedListener navListener = new  NavigationBarView.OnItemSelectedListener() {
         Fragment selectedFragment = new HomeFragment();
 
         @Override
@@ -73,16 +74,13 @@ public class MainActivity extends AppCompatActivity {
         if (userValid[1]){ //if password and username match, successful login
             setContentView(R.layout.activity_inventory);
             BottomNavigationView bottomNav = findViewById(R.id.bottomNavigation);
-            bottomNav.setOnNavigationItemSelectedListener(navListener);
+            bottomNav.setOnItemSelectedListener(navListener);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new HomeFragment()).commit();
             Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
         }
         else{ //error message
             Toast.makeText(this, "Login Unsuccessful", Toast.LENGTH_SHORT).show();
         }
-
-
-
     }
 
     public void signUp(View view) { //create new user and add into db
@@ -160,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
             //return home
             setContentView(R.layout.activity_inventory);
             BottomNavigationView bottomNav = findViewById(R.id.bottomNavigation);
-            bottomNav.setOnNavigationItemSelectedListener(navListener);
+            bottomNav.setOnItemSelectedListener(navListener);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new HomeFragment()).commit();
 
         }
@@ -169,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
     public void cancel(View view) { //cancel button return to home
         setContentView(R.layout.activity_inventory);
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigation);
-        bottomNav.setOnNavigationItemSelectedListener(navListener);
+        bottomNav.setOnItemSelectedListener(navListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new HomeFragment()).commit();
     }
 
@@ -203,15 +201,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     public boolean checkPermission(String permission) { //check if sms permissions activated
         return ContextCompat.checkSelfPermission(MainActivity.this, permission) != PackageManager.PERMISSION_DENIED;
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode,
                 permissions,
                 grantResults);

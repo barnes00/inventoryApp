@@ -12,8 +12,10 @@ import java.util.Random;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
-
-public class DatabaseHelper extends SQLiteOpenHelper { //class used to interact with the database
+/*
+    class used to interact with the database
+ */
+public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "inventory.db";
     private static final int VERSION = 1;
     private static final String CHANNEL_ID = "inventory_notifications";
