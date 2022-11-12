@@ -7,7 +7,8 @@ The app launches into a login screen in which users must enter a username and pa
 # Development and Design
 The entire app was created with Android Studio. The app has 5 screens which were designed with the IDE's Layout Editor. The UI designs were simple and intuitive so users can easily navigate the app. The user and item information are stored in a local SQLite database. 
 
-<img src="https://user-images.githubusercontent.com/86049959/201452493-0b03a159-1c57-4ce0-8580-4a7ed1eccb18.png" width=30% height=30%>
+<img src="https://user-images.githubusercontent.com/86049959/201453317-6440e315-2b8c-4c9a-8eb6-81349b1a2e8d.png" width=30% height=30%>
+
 
 # Testing
 I ran my app on the AVD emulator to test the functionality. The emulator uses a Pixel 5 running on Android Pie. I made sure all features could be properly used and no crashes occured. 
